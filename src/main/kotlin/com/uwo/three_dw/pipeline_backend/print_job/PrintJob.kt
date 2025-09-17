@@ -1,13 +1,16 @@
 package com.uwo.three_dw.pipeline_backend.print_job
 
 import com.uwo.three_dw.pipeline_backend.PrintStatus
+import com.uwo.three_dw.pipeline_backend.completed_order.CompletedOrder
 import com.uwo.three_dw.pipeline_backend.user.User
+import jakarta.persistence.CascadeType
 import jakarta.persistence.Entity
 import jakarta.persistence.GeneratedValue
 import jakarta.persistence.GenerationType
 import jakarta.persistence.Id
 import jakarta.persistence.JoinColumn
 import jakarta.persistence.ManyToOne
+import jakarta.persistence.OneToOne
 import jakarta.persistence.Table
 import java.util.Date
 import java.util.UUID
@@ -34,5 +37,5 @@ data class PrintJob(
     val description: String,
     val name: String,
     // TODO: foreign key to form data entry
-    val reprint: UUID? = null,
+    @OneToOne (cascade = [CascadeType.ALL]) val reprint: CompletedOrder? = null,
 )

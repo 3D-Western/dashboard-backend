@@ -2,12 +2,14 @@ package com.uwo.three_dw.pipeline_backend.completed_order
 
 import com.uwo.three_dw.pipeline_backend.OrderStatus
 import com.uwo.three_dw.pipeline_backend.user.User
+import jakarta.persistence.CascadeType
 import jakarta.persistence.Entity
 import jakarta.persistence.GeneratedValue
 import jakarta.persistence.GenerationType
 import jakarta.persistence.Id
 import jakarta.persistence.JoinColumn
 import jakarta.persistence.ManyToOne
+import jakarta.persistence.OneToOne
 import jakarta.persistence.Table
 import java.util.Date
 import java.util.UUID
@@ -34,5 +36,5 @@ data class CompletedOrder (
     val description: String,
     val name: String,
     // TODO: foreign key to form data entry
-    val reprint: UUID? = null,
+    @OneToOne (cascade = [CascadeType.ALL]) val reprint: CompletedOrder? = null,
 )
